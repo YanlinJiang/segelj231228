@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Home page</title>
+		
+		<!-- Set background -->
+		<style>
+			/* Set background */
+			body{
+				background-image: url('../image/background.jpg');
+			}
+			/* Set a small window */
+			.op_layout{
+				width: 800px;
+				height: 500px;
+				border: 9px solid #EEEEEE;
+				background-color: aliceblue;
+				margin: auto;
+				margin-top: 100px;
+			}
+			.layout_left{
+				width: 400px;
+				height: 500px;
+				float: left;
+			}
+			.layout_right{
+				width: 400px;
+				height: 500px;
+				float: right;
+			}
+				
+			.op_form{
+				width: 400px;
+				height: 300px;
+				float: right;
+			}
+			._op{
+				width: 300px;
+				height: 25px;
+				float: left;
+				background-color: white;
+				color: steelblue;
+				font-size: 20px;
+				padding-left: 20px;
+			}
+			
+			
+			.pic{
+				width: 100px;
+				height: 40px;
+				float: left;
+				padding-left: 20px;
+			}
+			
+			.l_op{
+				width: 150px;
+				height: 20px;
+				float: right;
+				padding-left: 20px;
+			}
+			
+			.bestStallForm{
+				background-color: aliceblue;
+				width: 350px;
+				margin: auto;
+				margin-top: 50px;
+				font-size: 20px;
+				text-align: center;
+			}
+			.sub_title{
+				font-size: 30px;
+				font-style: italic;
+			}
+			#account,#password{
+				width: 280px;
+				height: 28px;
+				border: 1px solid #EEEEEE;
+				border-radius: 5px;
+				padding-left: 10px;
+			}
+			#button{
+				width: 100px;
+				height: 28px;
+				background-color: lightgoldenrodyellow;
+				border: 1px solid #EEEEEE;
+				margin: center;
+				font-size: 15px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="op_layout">
+			<!-- Left side window: -->
+			<div class="layout_left">
+				<h2 align="center">HOME</h2>
+				<hr width=300>
+				<div class='op_form'>
+					
+					<table align="center"  width="50%" cellpadding="10" cellspacing="0" >
+						<tr>
+							<!-- 图片 -->
+							<td  rowspan='2' class='pic'>
+								<img src="../image/bilibili.png" style="float:right"  weight="100" height="100"/>
+							</td>
+							<!-- My favorate -->
+							<form action="#" method="get">
+								<td class=l_op>
+									<input type="hidden" name="favorate" value="favorate">
+									<input type="submit" value="My Favorate" id='button'>
+								</td>
+							</form>
+						</tr>
+						<tr>
+							<!-- My comments -->
+							<form action="#" method="get">
+								<td class=l_op>
+									<input type="hidden" name="comments" value="comments">
+									<input type="submit" value="My Comments" id='button'>
+								</td>
+							</form>
+						</tr>
+						
+						<!-- Stall Searching: -->
+						<form action="#" method="get">
+							
+							<tr><td colspan="2" class="_op">
+								<font  size='5px' color="darkblue" >Stall Searching:</font>
+							</td></tr>
+							
+							<!-- Input stall name keywords -->
+							<tr><td colspan="2" class="_op" ><input type='text' name='account' placeholder="You can input keyword of stall here" id='account'></td></tr>
+						
+							<!-- Canteen select -->
+							<tr>
+								<td colspan="2" class="_op" >Choose Canteen:
+									<select name="Canteen_Selecting">
+										<option value=0>all of the canteens</option>
+										<option value=1>Sky Canteen</option>
+										<option value=2>Olympic Canteen</option>
+										<option value=3>Delicious Canteen</option>
+									</select>
+								</td>
+							</tr>
+						
+							<!-- Food type select -->
+							<tr>
+								<td colspan="2" class="_op">Food Type:
+									<select name="Food_Selecting">
+										<option value=0>all kinds of food</option>
+										<option value=1>Covered rice </option>
+										<option value=2>Noodles </option>
+										<option value=3>Soup </option>
+										<option value=4>Characteristic </option>
+										<option value=5>Drinks </option>
+										<option value=6>Hot pot </option>
+										<option value=7>Main food </option>
+										<option value=8>Fast food </option>
+									</select>
+								</td>
+							</tr>	
+						
+							<!-- Sort by -->
+							<tr>
+								<td colspan="2" class="_op">Sort by:  
+									<font size="3" color="black">
+										Alphabet<input type="radio" name="id_type" value="0" checked="checked">
+										Marks<input type="radio" name="id_type" value="1">
+									</font>
+								</td>
+							</tr>
+						
+							<tr><td colspan="2" class="_op"><input type="submit" value="Search" id='button' ></td></tr>
+							
+							<!-- log out button -->
+							<tr><td colspan="2" >
+								<a href="../main.html" target="_self">
+									<img src="../image/out.png" style="float:left"  weight="30" height="30"/>
+								</a>
+							</td></tr>
+							
+						</form>						
+					</table>
+					
+				</div>
+				
+			</div>
+			
+			<!-- Right side window: -->
+			<div class="layout_right">
+				<h2 align="center">Week Best Recommendation:</h2>
+				<table  border = "2px" width="50%" cellpadding="10" cellspacing="0" class='bestStallForm' id="bestStallList">
+				</table>
+				
+			</div>
+			
+			<script>
+				var bestStall = ["Hot pot","3",'../image/syy.jpg',"1001"];
+					
+					
+					var arr = bestStall;
+					var i=0;
+					var table=document.getElementById("bestStallList");
+					
+					
+					var tr_stall = document.createElement("tr");
+					var text_stall = document.createTextNode(arr[0]);
+					tr_stall.className="sub_title";
+					tr_stall.appendChild(text_stall);
+					table.appendChild(tr_stall);
+					
+					var tr_mark = document.createElement("tr");
+					var text_mark = document.createTextNode("Mark: "+arr[1]+" stars");
+					tr_mark.appendChild(text_mark);
+					table.appendChild(tr_mark);
+					
+					var tr_pic = document.createElement("tr");
+					var pic = document.createElement("img");
+					pic.src = arr[2];
+					pic.width="200";
+					tr_pic.appendChild(pic);
+					table.appendChild(tr_pic);
+					
+					
+					var tr_detail = document.createElement("tr");
+					var detail = document.createElement("a");
+					detail.setAttribute("href","javascript:void(0);");
+					// detail.nodeValue = "aaa";
+					detail.value=+arr[3];
+					detail.setAttribute("onClick","get_stallID(this);");
+					var text_detail = document.createTextNode("View Detail Now!!");
+					detail.appendChild(text_detail);
+					tr_detail.appendChild(detail);
+					table.appendChild(tr_detail);
+					
+				
+				
+				// main_space.appendChild(table1);
+				//main_space.appendChild(table2);
+			
+				function get_stallID(detail_button){
+					var stallID = detail_button.value;
+					alert(stallID);
+				}
+				
+			</script>
+			
+		</div>
+	</body>
+</html>
